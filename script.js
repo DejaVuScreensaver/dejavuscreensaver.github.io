@@ -120,19 +120,6 @@ updateTime();
 window.setInterval(updateTime, 1000);
 restartTimer();
 
-// Hero: cycle the highlighted phrase (static when the visitor prefers reduced motion).
-const rotatorWords = [...document.querySelectorAll(".rotator-word")];
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  let word = 0;
-  window.setInterval(() => {
-    rotatorWords[word].classList.replace("is-active", "is-leaving");
-    const leaving = rotatorWords[word];
-    window.setTimeout(() => leaving.classList.remove("is-leaving"), 500);
-    word = (word + 1) % rotatorWords.length;
-    rotatorWords[word].classList.add("is-active");
-  }, 2800);
-}
-
 // Install guide: collapsible drawer on phones, always open on larger screens.
 const installSection = document.querySelector(".install");
 const installToggle = document.querySelector(".install-toggle");
