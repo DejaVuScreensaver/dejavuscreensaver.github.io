@@ -127,6 +127,7 @@ const phone = window.matchMedia("(max-width: 620px)");
 function setInstallOpen(open) {
   installSection.classList.toggle("is-collapsed", !open);
   installToggle.setAttribute("aria-expanded", String(open));
+  installToggle.textContent = open ? "Hide steps" : "View steps";
 }
 installToggle.addEventListener("click", () => {
   if (phone.matches) setInstallOpen(installSection.classList.contains("is-collapsed"));

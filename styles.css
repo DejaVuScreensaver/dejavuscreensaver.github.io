@@ -110,8 +110,7 @@ kbd { padding: .1em .42em; border: 1px solid #44464d; border-bottom-width: 2px; 
 .real-settings img { width: 100%; display: block; }
 .install { display: grid; grid-template-columns: .78fr 1.22fr; gap: 74px; align-items: start; }
 .install-copy { position: sticky; top: 40px; }
-.install-toggle { padding: 0; border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: default; }
-.install-toggle svg { display: none; }
+.install-toggle { display: none; }
 .install-copy > p:not(.eyebrow) { margin-top: 25px; color: var(--muted); line-height: 1.6; }
 .text-link { color: #b2c5ff; text-underline-offset: 4px; }
 .install-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
@@ -225,9 +224,7 @@ footer a:hover { color: var(--text); }
   .real-settings { display: none; }
   .install-steps li { grid-template-columns: 34px 1fr; padding: 20px 0; }
   .install { gap: 0; }
-  .install-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; cursor: pointer; }
-  .install-toggle svg { display: block; flex: 0 0 auto; width: 38px; height: 38px; padding: 7px; border: 1px solid var(--line); border-radius: 50%; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s ease; }
-  .install-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .install-toggle { display: flex; width: 100%; margin-top: 26px; font: inherit; font-weight: 650; cursor: pointer; }
   .install.is-collapsed .install-steps { display: none; }
   .install:not(.is-collapsed) .install-steps { margin-top: 32px; }
   .finder-window, .settings-window, .security-panel, .warning-dialog { grid-column: 1 / -1; }
