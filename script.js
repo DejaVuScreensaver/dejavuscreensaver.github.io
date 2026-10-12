@@ -143,3 +143,19 @@ installToggle.addEventListener("click", () => {
 });
 phone.addEventListener("change", () => setInstallOpen(!phone.matches));
 setInstallOpen(!phone.matches);
+
+// Settings window: play the menu-bar clip when it scrolls into view, then open the full window.
+const settingsReveal = document.querySelector(".settings-reveal");
+const settingsIntro = document.querySelector(".settings-intro");
+if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  settingsReveal.classList.add("is-ready");
+  const openWindow = () => settingsReveal.classList.add("is-open");
+  settingsIntro.addEventListener("ended", openWindow);
+  settingsIntro.querySelector("source:last-of-type").addEventListener("error", openWindow);
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries[0].isIntersecting) return;
+    observer.disconnect();
+    settingsIntro.play().catch(openWindow);
+  }, { threshold: 1 });
+  observer.observe(settingsIntro);
+}
