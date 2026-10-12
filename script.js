@@ -8,6 +8,7 @@ const count = document.querySelector("#demo-count");
 const detailsPanel = document.querySelector("#detail-options");
 const detailsControl = document.querySelector('[data-action="details"]');
 const pauseControl = document.querySelector('[data-action="pause"]');
+const durationInput = document.querySelector("#demo-duration");
 
 const memories = [
   { date: "August 16, 2025 at 8:41 PM", location: "Lake Como, Italy", filename: "IMG_1842.HEIC" },
@@ -40,9 +41,15 @@ function showSlide(index) {
   count.textContent = `${activeSlide + 1} / ${slides.length}`;
 }
 
+function photoSeconds() {
+  return Math.min(60, Math.max(2, Math.round(Number(durationInput.value)) || 5));
+}
+
 function restartTimer() {
   window.clearInterval(slideTimer);
-  if (!paused) slideTimer = window.setInterval(() => showSlide(activeSlide + 1), 5000);
+  const seconds = photoSeconds();
+  frame.style.setProperty("--slide-duration", `${seconds}s`);
+  if (!paused) slideTimer = window.setInterval(() => showSlide(activeSlide + 1), seconds * 1000);
 }
 
 function setPaused(nextPaused) {
@@ -102,6 +109,12 @@ controls.forEach((control) => {
 
 document.querySelectorAll("[data-detail-toggle]").forEach((checkbox) => {
   checkbox.addEventListener("change", syncDetailVisibility);
+});
+
+durationInput.addEventListener("input", restartTimer);
+durationInput.addEventListener("change", () => {
+  durationInput.value = photoSeconds();
+  restartTimer();
 });
 
 document.addEventListener("keydown", (event) => {
