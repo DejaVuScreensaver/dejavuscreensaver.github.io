@@ -104,8 +104,17 @@ document.querySelectorAll("[data-detail-toggle]").forEach((checkbox) => {
   checkbox.addEventListener("change", syncDetailVisibility);
 });
 
+// Light up the on-screen key while the matching physical key is held down.
+const keyFor = { ArrowLeft: ".key-left", ArrowRight: ".key-right", Space: ".key-space" };
+function pressKey(event, pressed) {
+  if (keyFor[event.code]) document.querySelector(keyFor[event.code]).classList.toggle("is-pressed", pressed);
+}
+document.addEventListener("keyup", (event) => pressKey(event, false));
+window.addEventListener("blur", () => document.querySelectorAll(".keyboard-key.is-pressed").forEach((key) => key.classList.remove("is-pressed")));
+
 document.addEventListener("keydown", (event) => {
   if (event.target.matches("input, button, a")) return;
+  pressKey(event, true);
   if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
     showSlide(activeSlide + (event.key === "ArrowRight" ? 1 : -1));
     restartTimer();
