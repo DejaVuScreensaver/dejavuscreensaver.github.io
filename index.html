@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#08090c">
   <title>DejaVuScreensaver — Turn your Mac’s screen into a living photo album</title>
   <link rel="icon" href="assets/app-icon.png">
-  <link rel="stylesheet" href="styles.css?v=2026101310">
+  <link rel="stylesheet" href="styles.css?v=2026101311">
 </head>
 <body>
   <header class="nav shell">
@@ -102,10 +102,26 @@
       <figure class="real-settings">
         <figcaption>* Complete DejaVuScreensaver "Settings" window (v0.4.0, build 24)</figcaption>
         <div class="settings-reveal">
-          <video class="settings-intro" poster="assets/settings-intro-poster.jpg" muted playsinline preload="none" aria-hidden="true">
-            <source src="assets/settings-intro.webm" type="video/webm">
-            <source src="assets/settings-intro.mp4" type="video/mp4">
-          </video>
+          <div class="mac-menubar" aria-hidden="true">
+            <span class="mb-app">
+              <img src="assets/mb-dejavu.png" alt="" style="width: 16.5px">
+              <span class="mb-menu">
+                <span data-item="start">Start Slideshow</span>
+                <span data-item="settings">Settings...</span>
+                <span>Recently Viewed...</span>
+                <i></i>
+                <span class="is-disabled">Photos ready</span>
+                <span class="is-disabled">Secure lock ready</span>
+                <i></i>
+                <span>Quit DejaVuScreensaver</span>
+              </span>
+            </span>
+            <img src="assets/mb-wifi.png" alt="" style="width: 17px">
+            <img src="assets/mb-search.png" alt="" style="width: 12.5px">
+            <img src="assets/mb-control.png" alt="" style="width: 13.5px">
+            <time class="mb-clock" id="mb-clock">Tue 13 Oct&nbsp; 01:40</time>
+          </div>
+          <img class="mb-cursor" src="assets/mb-cursor.png" alt="" aria-hidden="true">
           <div class="real-settings-window">
             <img src="assets/settings-window.png" alt="Complete DejaVuScreensaver settings window with Photos Library, playback, automatic start and security controls">
           </div>
@@ -209,6 +225,6 @@
 
   <p class="asset-credit shell">Keyboard image: Fletcher / AGreuet, <a href="https://commons.wikimedia.org/wiki/File:Apple_Magic_Keyboard_-_US_remix_transparent.png">CC BY 4.0</a>; cropped in the page layout.</p>
 
-  <script src="script.js?v=2026101310"></script>
+  <script src="script.js?v=2026101311"></script>
 </body>
 </html>

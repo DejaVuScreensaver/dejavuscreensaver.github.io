@@ -111,10 +111,23 @@ kbd { padding: .1em .42em; border: 1px solid #44464d; border-bottom-width: 2px; 
 .real-settings-window::after { position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 1px rgba(0,0,0,.28) inset, 0 1px rgba(255,255,255,.08) inset; content: ""; pointer-events: none; }
 .real-settings img { width: 100%; display: block; }
 .settings-reveal { position: relative; }
-.settings-intro { display: none; }
-.settings-reveal.is-ready .settings-intro { position: absolute; z-index: 1; top: 0; left: 50%; display: block; width: 251px; transform: translateX(-50%); -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent), linear-gradient(#000 72%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent), linear-gradient(#000 72%, transparent); mask-composite: intersect; transition: opacity .25s ease; }
+.mac-menubar { position: relative; z-index: 2; height: 29px; margin-bottom: 12px; display: flex; align-items: center; justify-content: flex-end; gap: 20px; padding-right: 6px; color: #fff; font: 500 13px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif; }
+.mac-menubar img { display: block; }
+.mb-app { position: relative; display: grid; place-items: center; width: 40px; height: 22px; margin-right: -10px; border-radius: 999px; transition: background .08s; }
+.mb-app.is-active { background: rgba(255,255,255,.22); }
+.mb-clock { margin-left: 2px; white-space: pre; font-variant-numeric: tabular-nums; }
+.mb-menu { position: absolute; top: 28px; left: -2px; width: 176px; padding: 5px; display: grid; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; background: rgba(40,40,44,.86); -webkit-backdrop-filter: blur(24px) saturate(1.6); backdrop-filter: blur(24px) saturate(1.6); box-shadow: 0 12px 36px rgba(0,0,0,.55); font-weight: 400; letter-spacing: -.01em; opacity: 0; visibility: hidden; transition: opacity .12s, visibility .12s; }
+.mb-app.is-open .mb-menu { opacity: 1; visibility: visible; }
+.mb-app.is-closing .mb-menu { transition-duration: .25s; }
+.mb-menu span { height: 24px; padding: 0 9px; display: flex; align-items: center; border-radius: 7px; color: rgba(255,255,255,.92); white-space: nowrap; }
+.mb-menu span.is-hover { background: #2a62c9; color: #fff; }
+.mb-menu .is-disabled { color: rgba(255,255,255,.32); }
+.mb-menu i { height: 1px; margin: 5px 9px; background: rgba(255,255,255,.14); }
+.mb-cursor { display: none; }
+.settings-reveal.is-ready .mb-cursor { position: absolute; z-index: 3; top: 0; left: 0; display: block; width: 11px; height: 18px; filter: drop-shadow(0 1px 1.5px rgba(0,0,0,.45)); pointer-events: none; opacity: 0; transition: opacity .3s; }
+.settings-reveal.is-playing .mb-cursor { opacity: 1; }
+.settings-reveal.is-open .mb-cursor { opacity: 0; }
 .settings-reveal.is-ready .real-settings-window { opacity: 0; transform: scale(.94); transform-origin: 50% 0; transition: opacity .3s ease, transform .45s cubic-bezier(.2, .8, .2, 1); }
-.settings-reveal.is-open .settings-intro { opacity: 0; }
 .settings-reveal.is-open .real-settings-window { opacity: 1; transform: none; }
 .install { display: grid; grid-template-columns: .78fr 1.22fr; gap: 74px; align-items: start; }
 .install-copy { position: sticky; top: 40px; }

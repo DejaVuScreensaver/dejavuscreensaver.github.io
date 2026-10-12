@@ -144,18 +144,69 @@ installToggle.addEventListener("click", () => {
 phone.addEventListener("change", () => setInstallOpen(!phone.matches));
 setInstallOpen(!phone.matches);
 
-// Settings window: play the menu-bar clip when it scrolls into view, then open the full window.
+// Settings window: a scripted cursor opens the menu-bar menu, picks Settings…, then the window opens.
 const settingsReveal = document.querySelector(".settings-reveal");
-const settingsIntro = document.querySelector(".settings-intro");
+const menuApp = settingsReveal.querySelector(".mb-app");
+const cursor = settingsReveal.querySelector(".mb-cursor");
+const clock = document.querySelector("#mb-clock");
+
+function updateClock() {
+  const now = new Date();
+  const day = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" }).format(now).replace(",", "");
+  const hm = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(now);
+  clock.textContent = `${day}  ${hm}`;
+}
+updateClock();
+window.setInterval(updateClock, 10000);
+
+const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+function pointAt(element) {
+  const box = element.getBoundingClientRect();
+  const stage = settingsReveal.getBoundingClientRect();
+  return [box.left - stage.left + box.width * 0.45, box.top - stage.top + box.height * 0.45];
+}
+function moveCursor(to, duration) {
+  const from = cursor.dataset.at ? JSON.parse(cursor.dataset.at) : to;
+  cursor.dataset.at = JSON.stringify(to);
+  return cursor.animate([
+    { transform: `translate(${from[0]}px, ${from[1]}px)` },
+    { transform: `translate(${to[0]}px, ${to[1]}px)` }
+  ], { duration, easing: "cubic-bezier(.45, 0, .2, 1)", fill: "forwards" }).finished;
+}
+function hover(item) {
+  menuApp.querySelectorAll(".mb-menu span").forEach((row) => row.classList.toggle("is-hover", row === item));
+}
+
+async function playSettingsIntro() {
+  const startItem = menuApp.querySelector('[data-item="start"]');
+  const settingsItem = menuApp.querySelector('[data-item="settings"]');
+  const icon = pointAt(menuApp);
+  await moveCursor([icon[0] - 170, icon[1] + 150], 0);
+  settingsReveal.classList.add("is-playing");
+  await wait(300);
+  await moveCursor(icon, 950);
+  await wait(150);
+  menuApp.classList.add("is-active", "is-open");
+  await wait(450);
+  await moveCursor(pointAt(startItem), 450);
+  hover(startItem);
+  await wait(250);
+  await moveCursor(pointAt(settingsItem), 380);
+  hover(settingsItem);
+  await wait(450);
+  hover(null); await wait(70); hover(settingsItem); await wait(90);
+  menuApp.classList.add("is-closing");
+  menuApp.classList.remove("is-active", "is-open");
+  await wait(250);
+  settingsReveal.classList.add("is-open");
+}
+
 if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   settingsReveal.classList.add("is-ready");
-  const openWindow = () => settingsReveal.classList.add("is-open");
-  settingsIntro.addEventListener("ended", openWindow);
-  settingsIntro.querySelector("source:last-of-type").addEventListener("error", openWindow);
   const observer = new IntersectionObserver((entries) => {
     if (!entries[0].isIntersecting) return;
     observer.disconnect();
-    settingsIntro.play().catch(openWindow);
+    playSettingsIntro().catch(() => settingsReveal.classList.add("is-open"));
   }, { threshold: 1 });
-  observer.observe(settingsIntro);
+  observer.observe(settingsReveal.querySelector(".mac-menubar"));
 }
