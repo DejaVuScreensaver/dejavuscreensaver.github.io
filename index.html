@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DejaVuScreensaver turns your Mac Photos library into a private, customizable slideshow.">
+  <meta name="theme-color" content="#0b0c10">
+  <title>DejaVuScreensaver — Your photos, back on screen</title>
+  <link rel="icon" href="assets/app-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav shell">
+    <a class="brand" href="#top" aria-label="DejaVuScreensaver home">
+      <img src="assets/app-icon.png" alt="" width="38" height="38">
+      <span>DejaVuScreensaver</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/DejaVuScreensaver/DejaVuScreensaver">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Free · Open source · macOS 14+</p>
+        <h1>Your photos,<br><span>back on screen.</span></h1>
+        <p class="lede">A quiet, customizable slideshow for your Mac Photos library. No uploads. No account. Your library stays on your Mac.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/latest/download/DejaVuScreensaver.dmg">Download for macOS <span>↓</span></a>
+          <a class="button secondary" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver">View source</a>
+        </div>
+        <p class="release-note">Early preview · unsigned build · Apple silicon</p>
+      </div>
+
+      <div class="app-card" aria-label="DejaVuScreensaver app icon">
+        <img src="assets/app-icon.png" alt="DejaVuScreensaver icon">
+        <div>
+          <strong>DejaVuScreensaver</strong>
+          <span>Lives quietly in your menu bar</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section shell" aria-labelledby="demo-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Live preview</p>
+          <h2 id="demo-title">See what it does.</h2>
+        </div>
+        <p>Demo images were generated for this website. No private Photos library content is used.</p>
+      </div>
+
+      <div class="demo-frame" id="demo-frame">
+        <div class="slide slide-one active" aria-hidden="false"></div>
+        <div class="slide slide-two" aria-hidden="true"></div>
+        <time class="demo-time" id="demo-time">20:41</time>
+        <div class="demo-meta">
+          <span>June 18, 2025 at 8:41 PM</span>
+          <span>Alpine Lake</span>
+        </div>
+        <div class="demo-count"><span>▶</span> <span id="demo-count">1 / 2</span></div>
+      </div>
+
+      <div class="demo-controls" aria-label="Demo controls">
+        <button class="control active" data-action="static" type="button">Static</button>
+        <button class="control" data-action="ken-burns" type="button">Ken Burns</button>
+        <button class="control active" data-action="time" type="button">Current time</button>
+        <button class="control active" data-action="details" type="button">Photo details</button>
+      </div>
+    </section>
+
+    <section class="features shell" id="features" aria-labelledby="features-title">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">The essentials</p>
+          <h2 id="features-title">Simple by design.</h2>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <article>
+          <span class="feature-icon">⌁</span>
+          <h3>Private by default</h3>
+          <p>Reads your Photos library locally. Nothing is uploaded and no account is required.</p>
+        </article>
+        <article>
+          <span class="feature-icon">▦</span>
+          <h3>Your albums</h3>
+          <p>Choose albums, built-in smart albums, or all photos. Add basic filters when you want them.</p>
+        </article>
+        <article>
+          <span class="feature-icon">◷</span>
+          <h3>Current time</h3>
+          <p>Pick its position, font and size—or keep the screen completely clean.</p>
+        </article>
+        <article>
+          <span class="feature-icon">↗</span>
+          <h3>Still or cinematic</h3>
+          <p>Use a static presentation or a subtle Ken Burns movement with your preferred duration.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="install shell" id="install" aria-labelledby="install-title">
+      <div class="install-copy">
+        <p class="eyebrow">Install the preview</p>
+        <h2 id="install-title">Not signed yet.<br>Still easy to open.</h2>
+        <p>The current preview has not been signed or notarized by Apple. Download it only from the official GitHub repository and review the source if you prefer.</p>
+        <a class="text-link" href="https://support.apple.com/102445">Read Apple’s security guidance ↗</a>
+      </div>
+
+      <ol class="install-steps">
+        <li>
+          <span class="step-number">1</span>
+          <div>
+            <strong>Try to open the app once</strong>
+            <p>Open the DMG, move DejaVuScreensaver to Applications, then launch it.</p>
+          </div>
+          <div class="mini-window">
+            <div class="traffic"><i></i><i></i><i></i></div>
+            <div class="mini-content"><img src="assets/app-icon.png" alt=""><span>DejaVuScreensaver</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <div>
+            <strong>Open Privacy &amp; Security</strong>
+            <p>Go to System Settings → Privacy &amp; Security, then scroll down.</p>
+          </div>
+          <div class="settings-path"><span>⚙</span> Privacy &amp; Security</div>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <div>
+            <strong>Choose “Open Anyway”</strong>
+            <p>Confirm once. macOS remembers your choice for future launches.</p>
+          </div>
+          <div class="open-anyway">Open Anyway</div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="final-cta shell">
+      <img src="assets/app-icon.png" alt="" width="80" height="80">
+      <div>
+        <h2>Put your library back to work.</h2>
+        <p>Free, open source and built for macOS.</p>
+      </div>
+      <a class="button primary" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/latest/download/DejaVuScreensaver.dmg">Download <span>↓</span></a>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <span>DejaVuScreensaver</span>
+    <span>Made for the photos you already have.</span>
+    <a href="mailto:pietro.michelini@gmail.com">Support</a>
+    <a href="https://github.com/DejaVuScreensaver/DejaVuScreensaver">GitHub</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
