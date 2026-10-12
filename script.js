@@ -2,7 +2,6 @@ const frame = document.querySelector("#demo-frame");
 const slides = [...document.querySelectorAll(".slide")];
 const controls = [...document.querySelectorAll("[data-action]")];
 const time = document.querySelector("#demo-time");
-const menuDate = document.querySelector("#menu-date");
 const meta = document.querySelector(".demo-meta");
 const countWrap = document.querySelector(".demo-count");
 const count = document.querySelector("#demo-count");
@@ -26,17 +25,6 @@ function updateTime() {
     hour: "2-digit",
     minute: "2-digit"
   }).format(now);
-
-  const dateParts = new Intl.DateTimeFormat("en-GB", {
-    weekday: "short",
-    day: "numeric",
-    month: "short"
-  }).format(now);
-  const timeParts = new Intl.DateTimeFormat(undefined, {
-    hour: "2-digit",
-    minute: "2-digit"
-  }).format(now);
-  menuDate.textContent = `${dateParts}  ${timeParts}`;
 }
 
 function showSlide(index) {
@@ -68,7 +56,7 @@ function setPaused(nextPaused) {
 }
 
 function syncDetailVisibility() {
-  const enabled = detailsControl.classList.contains("active");
+  const enabled = detailsControl.checked;
   meta.hidden = !enabled;
   detailsPanel.hidden = !enabled;
   detailsControl.setAttribute("aria-expanded", String(enabled));
@@ -83,8 +71,10 @@ function syncDetailVisibility() {
 }
 
 controls.forEach((control) => {
-  control.addEventListener("click", () => {
+  control.addEventListener(control.matches('input[type="checkbox"]') ? "change" : "click", (event) => {
     const action = control.dataset.action;
+    // Mouse clicks on the on-screen keys drop focus so the physical Space/arrows keep working.
+    if (event.detail && control.matches(".keyboard-key")) control.blur();
 
     if (action === "previous" || action === "next") {
       showSlide(activeSlide + (action === "next" ? 1 : -1));
@@ -105,8 +95,7 @@ controls.forEach((control) => {
       return;
     }
 
-    control.classList.toggle("active");
-    if (action === "time") time.hidden = !control.classList.contains("active");
+    if (action === "time") time.hidden = !control.checked;
     if (action === "details") syncDetailVisibility();
   });
 });
