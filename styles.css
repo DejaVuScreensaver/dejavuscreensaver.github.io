@@ -195,9 +195,11 @@ footer a:hover { color: var(--text); }
 
 @media (max-width: 620px) {
   .shell { width: min(calc(100% - 28px), var(--max)); }
-  .nav { height: 66px; }
+  .nav { height: 92px; }
   .brand span { display: none; }
-  .brand img { width: 34px; height: 34px; }
+  .brand img { width: 52px; height: 52px; border-radius: 14px; }
+  .nav nav .nav-download { min-height: 57px; padding: 0 24px 0 26px; gap: 11px; font-size: 21px; }
+  .nav nav .nav-download svg { width: 25px; height: 25px; }
   .nav nav { gap: 8px; }
   .hero h1 { font-size: clamp(45px, 14vw, 62px); }
   .lede { font-size: 18px; }
