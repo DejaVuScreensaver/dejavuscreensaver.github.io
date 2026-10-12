@@ -1,7 +1,8 @@
 const frame = document.querySelector("#demo-frame");
 const slides = [...document.querySelectorAll(".slide")];
-const controls = [...document.querySelectorAll(".control")];
+const controls = [...document.querySelectorAll("[data-action]")];
 const time = document.querySelector("#demo-time");
+const menuDate = document.querySelector("#menu-date");
 const meta = document.querySelector(".demo-meta");
 const countWrap = document.querySelector(".demo-count");
 const count = document.querySelector("#demo-count");
@@ -20,10 +21,22 @@ let paused = false;
 let slideTimer;
 
 function updateTime() {
+  const now = new Date();
   time.textContent = new Intl.DateTimeFormat(undefined, {
     hour: "2-digit",
     minute: "2-digit"
-  }).format(new Date());
+  }).format(now);
+
+  const dateParts = new Intl.DateTimeFormat("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short"
+  }).format(now);
+  const timeParts = new Intl.DateTimeFormat(undefined, {
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(now);
+  menuDate.textContent = `${dateParts}  ${timeParts}`;
 }
 
 function showSlide(index) {
