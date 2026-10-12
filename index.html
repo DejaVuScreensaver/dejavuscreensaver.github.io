@@ -75,24 +75,19 @@
       </div>
 
       <div class="imac" aria-label="Interactive DejaVuScreensaver preview on an iMac">
-        <div class="imac-display">
-          <span class="imac-camera" aria-hidden="true"></span>
-          <div class="demo-frame" id="demo-frame">
-            <div class="slide slide-one active" aria-hidden="false"></div>
-            <div class="slide slide-two" aria-hidden="true"></div>
-            <div class="slide slide-three" aria-hidden="true"></div>
-            <time class="demo-time" id="demo-time">20:41</time>
-            <div class="demo-meta" aria-live="polite">
-              <span data-detail="date" id="demo-date">August 16, 2025 at 8:41 PM</span>
-              <span data-detail="location" id="demo-location">Lake Como, Italy</span>
-              <span data-detail="filename" id="demo-filename">IMG_1842.HEIC</span>
-            </div>
-            <div class="demo-count" data-detail="count"><span>▶</span> <span id="demo-count">1 / 3</span></div>
+        <img class="imac-photo" src="assets/imac-front.png" alt="Front view of a silver iMac">
+        <div class="demo-frame" id="demo-frame">
+          <div class="slide slide-one active" aria-hidden="false"></div>
+          <div class="slide slide-two" aria-hidden="true"></div>
+          <div class="slide slide-three" aria-hidden="true"></div>
+          <time class="demo-time" id="demo-time">20:41</time>
+          <div class="demo-meta" aria-live="polite">
+            <span data-detail="date" id="demo-date">August 16, 2025 at 8:41 PM</span>
+            <span data-detail="location" id="demo-location">Lake Como, Italy</span>
+            <span data-detail="filename" id="demo-filename">IMG_1842.HEIC</span>
           </div>
+          <div class="demo-count" data-detail="count"><span>▶</span> <span id="demo-count">1 / 3</span></div>
         </div>
-        <div class="imac-chin"><span aria-hidden="true"></span></div>
-        <div class="imac-stand" aria-hidden="true"></div>
-        <div class="imac-foot" aria-hidden="true"></div>
       </div>
 
       <div class="demo-toolbar" aria-label="Interactive slideshow demo">
@@ -134,15 +129,15 @@
         <li>
           <span class="step-number">1</span>
           <div class="step-copy">
-            <strong>Install, then try once</strong>
-            <p>Open the DMG, drag DejaVuScreensaver to Applications, and launch it.</p>
+            <strong>Move it to Applications</strong>
+            <p>Open the DMG, drag DejaVuScreensaver into Applications, then try to open it once.</p>
           </div>
           <div class="finder-window" aria-hidden="true">
-            <div class="window-bar"><span></span><span></span><span></span></div>
+            <div class="window-bar"><div class="traffic-lights"><span></span><span></span><span></span></div><b>DejaVuScreensaver</b></div>
             <div class="finder-content">
-              <div><img src="assets/app-icon.png" alt=""><small>DejaVuScreensaver</small></div>
-              <b>→</b>
-              <div class="applications-icon">A<small>Applications</small></div>
+              <div class="finder-item"><img src="assets/app-icon.png" alt=""><small>DejaVuScreensaver</small></div>
+              <b class="drag-arrow">→</b>
+              <div class="finder-item"><img class="applications-folder" src="assets/applications-folder.png" alt=""><small>Applications</small></div>
             </div>
           </div>
         </li>
@@ -153,19 +148,42 @@
             <p>In System Settings, select Privacy &amp; Security and scroll to Security.</p>
           </div>
           <div class="settings-window" aria-hidden="true">
-            <div class="settings-sidebar"><b>System Settings</b><span>General</span><span class="selected">Privacy &amp; Security</span><span>Desktop &amp; Dock</span></div>
-            <div class="settings-main"><small>Privacy &amp; Security</small><strong>Security</strong><span>Allow applications from</span></div>
+            <div class="settings-toolbar"><div class="traffic-lights"><span></span><span></span><span></span></div></div>
+            <div class="settings-sidebar">
+              <div class="settings-title"><img src="assets/system-settings.png" alt=""><b>System Settings</b></div>
+              <div class="settings-search">Search</div>
+              <span>General</span><span>Appearance</span><span>Accessibility</span><span class="selected">Privacy &amp; Security</span><span>Desktop &amp; Dock</span>
+            </div>
+            <div class="settings-main">
+              <strong>Privacy &amp; Security</strong>
+              <div class="settings-group"><span>Location Services</span><i>›</i><span>Contacts</span><i>›</i><span>Photos</span><i>›</i></div>
+              <b>Security</b>
+              <div class="settings-group security-summary"><span>Allow applications from</span><small>App Store and identified developers</small></div>
+            </div>
           </div>
         </li>
         <li>
           <span class="step-number">3</span>
           <div class="step-copy">
             <strong>Choose Open Anyway</strong>
-            <p>Confirm once with your Mac password or Touch ID. Future launches open normally.</p>
+            <p>In the Security section, click Open Anyway. The button appears after the blocked launch.</p>
           </div>
           <div class="security-panel" aria-hidden="true">
-            <div><strong>Security</strong><p>“DejaVuScreensaver” was blocked to protect your Mac.</p></div>
-            <span class="mac-button">Open Anyway</span>
+            <strong>Security</strong>
+            <div class="security-row"><p>“DejaVuScreensaver” was blocked from use because it is not from an identified developer.</p><span class="mac-button">Open Anyway</span></div>
+            <div class="allowed-row"><span>Allow applications from</span><small>◉ App Store and identified developers</small></div>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">4</span>
+          <div class="step-copy">
+            <strong>Confirm Open</strong>
+            <p>Choose Open in the warning, then authenticate if macOS asks. You only do this once.</p>
+          </div>
+          <div class="warning-dialog" aria-hidden="true">
+            <img src="assets/app-icon.png" alt="">
+            <div><strong>Open “DejaVuScreensaver”?</strong><p>macOS cannot verify the developer of this app. Are you sure you want to open it?</p></div>
+            <div class="dialog-actions"><span>Cancel</span><span class="open-button">Open</span></div>
           </div>
         </li>
       </ol>
@@ -190,7 +208,7 @@
     </div>
   </footer>
 
-  <p class="asset-credit shell">Keyboard image: Fletcher / AGreuet, <a href="https://commons.wikimedia.org/wiki/File:Apple_Magic_Keyboard_-_US_remix_transparent.png">CC BY 4.0</a>; cropped in the page layout.</p>
+  <p class="asset-credit shell">iMac image: Matthieu Riegler / Wikimedia Commons, <a href="https://commons.wikimedia.org/wiki/File:Imac_16-9.png">CC BY 3.0</a>. Keyboard image: Fletcher / AGreuet, <a href="https://commons.wikimedia.org/wiki/File:Apple_Magic_Keyboard_-_US_remix_transparent.png">CC BY 4.0</a>; cropped in the page layout.</p>
 
   <script src="script.js"></script>
 </body>
