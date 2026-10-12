@@ -62,6 +62,7 @@ kbd { padding: .1em .42em; border: 1px solid #44464d; border-bottom-width: 2px; 
 .install { padding: 112px 0; border-top: 1px solid var(--line); }
 .install h2 { margin-bottom: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: clamp(40px, 5.2vw, 67px); letter-spacing: -.03em; line-height: 1.05; }
 .imac { position: relative; z-index: 4; width: min(92%, 1020px); margin: -30px auto 20px; filter: drop-shadow(0 38px 48px rgba(0,0,0,.42)); }
+.imac::before { position: absolute; z-index: 0; inset: -12% -8% 16%; background: radial-gradient(closest-side, rgba(255, 204, 96, .13) 55%, rgba(255, 204, 96, .055) 78%, transparent); content: ""; pointer-events: none; }
 .imac-photo { position: relative; z-index: 1; width: 100%; display: block; pointer-events: none; }
 .demo-frame { position: absolute; z-index: 2; top: 13.8%; left: 4.1%; width: 91.8%; height: 51.8%; overflow: hidden; background: #000; }
 .slide { position: absolute; inset: -2%; opacity: 0; background-size: cover; background-position: center; transition: opacity .7s ease; }
@@ -186,6 +187,7 @@ footer a:hover { color: var(--text); }
 
 @media (max-width: 1160px) {
   .demo-toolbar { width: 50%; margin-left: 0; }
+  .imac::before { inset: -10% -4% 16%; }
 }
 
 @media (max-width: 920px) {
@@ -216,6 +218,7 @@ footer a:hover { color: var(--text); }
   .demo-section, .install { padding: 80px 0; }
   .hero { padding: 72px 0 80px; }
   .imac { width: 100%; margin-top: -10px; }
+  .imac::before { inset: -6% 0 20%; }
   .slide { background-position: center; }
   .demo-meta { left: 4%; max-width: 72%; gap: 3px; border-radius: 14px; flex-direction: column; }
   .demo-meta span + span::before { display: none; }
