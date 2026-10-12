@@ -145,13 +145,17 @@ kbd { padding: .1em .42em; border: 1px solid #44464d; border-bottom-width: 2px; 
 .settings-group i { color: #8f9097; font-size: 15px; font-style: normal; }
 .settings-group small { grid-column: 1 / -1; color: #999aa1; font-size: 9px; }
 .security-summary span { border-bottom: 0; }
+.security-summary span { white-space: nowrap; }
+.security-summary small { grid-column: auto; padding-left: 0; border-bottom: 0; color: #d6d6da; font-size: 10px; white-space: nowrap; }
+.security-summary small, .allowed-row small { display: flex; align-items: center; gap: 6px; }
+.popup-icon { flex: 0 0 auto; width: 15px; height: 15px; padding: 2px; border-radius: 50%; background: rgba(255,255,255,.13); fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .security-panel { min-height: 155px; padding: 22px; background: #292a2e; }
 .security-panel > strong { display: block; margin-bottom: 13px; font-size: 15px; }
 .security-row { padding-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgba(255,255,255,.1); }
 .security-panel p { max-width: 420px; margin: 0; color: #c2c2c7; font-size: 11px; line-height: 1.45; }
 .mac-button { flex: 0 0 auto; padding: 7px 14px; border-radius: 7px; background: #ececef; color: #141519; font-size: 11px; font-weight: 650; box-shadow: 0 1px 3px rgba(0,0,0,.45); }
-.allowed-row { padding-top: 14px; display: flex; justify-content: space-between; gap: 20px; color: #ceced2; font-size: 10px; }
-.allowed-row small { color: #9c9da4; font-size: 9px; }
+.allowed-row { padding-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #ceced2; font-size: 10px; }
+.allowed-row small { color: #d6d6da; font-size: 10px; }
 .warning-dialog { min-height: 160px; padding: 22px; display: grid; grid-template-columns: 54px 1fr; gap: 16px; background: rgba(43,44,49,.96); backdrop-filter: blur(24px); }
 .warning-dialog > img { width: 54px; height: 54px; border-radius: 13px; }
 .warning-dialog strong { display: block; margin: 3px 0 8px; font-size: 14px; }
@@ -212,6 +216,9 @@ footer a:hover { color: var(--text); }
   .install-steps li { grid-template-columns: 34px 1fr; padding: 20px 0; }
   .finder-window, .settings-window, .security-panel, .warning-dialog { grid-column: 1 / -1; }
   .finder-content { padding: 25px 20px; }
+  .security-summary { grid-template-columns: 1fr; }
+  .security-summary span { padding-bottom: 0; }
+  .security-summary small { padding: 4px 10px 9px; white-space: normal; }
   .finder-item { min-width: 0; }
   .final-cta { margin-top: 0; padding: 40px 0; }
   .final-cta img { width: 56px; height: 56px; }
