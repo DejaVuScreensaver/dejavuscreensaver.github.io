@@ -212,8 +212,8 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
 }
 
 // Live download count: sum of DMG downloads across all GitHub releases.
-// Shown only once it is worth showing; fails silently (offline, rate limit).
-const DL_MIN = 100;
+// Hidden when zero; fails silently (offline, rate limit).
+const DL_MIN = 1;
 const DL_KEY = "dl-count-v1";
 const dlEls = [...document.querySelectorAll(".dl-count")];
 
@@ -233,6 +233,7 @@ function countUp(el, n) {
   const b = el.querySelector("b");
   const fmt = new Intl.NumberFormat("en-US");
   el.hidden = false;
+  el.lastChild.textContent = n === 1 ? " download" : " downloads";
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { b.textContent = fmt.format(n); return; }
   const start = performance.now();
   const step = (now) => {
