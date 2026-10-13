@@ -210,3 +210,48 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
   }, { threshold: 1 });
   observer.observe(settingsReveal.querySelector(".mac-menubar"));
 }
+
+// Live download count: sum of DMG downloads across all GitHub releases.
+// Shown only once it is worth showing; fails silently (offline, rate limit).
+const DL_MIN = 100;
+const DL_KEY = "dl-count-v1";
+const dlEls = [...document.querySelectorAll(".dl-count")];
+
+async function downloadCount() {
+  try {
+    const cached = JSON.parse(sessionStorage.getItem(DL_KEY) || "null");
+    if (cached && Date.now() - cached.t < 10 * 60 * 1000) return cached.n;
+  } catch {}
+  const res = await fetch("https://api.github.com/repos/pietromichelini/DejaVuScreensaver/releases?per_page=100");
+  if (!res.ok) throw new Error(res.status);
+  const n = (await res.json()).flatMap((r) => r.assets).filter((a) => a.name.endsWith(".dmg")).reduce((sum, a) => sum + a.download_count, 0);
+  try { sessionStorage.setItem(DL_KEY, JSON.stringify({ n, t: Date.now() })); } catch {}
+  return n;
+}
+
+function countUp(el, n) {
+  const b = el.querySelector("b");
+  const fmt = new Intl.NumberFormat("en-US");
+  el.hidden = false;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { b.textContent = fmt.format(n); return; }
+  const start = performance.now();
+  const step = (now) => {
+    const p = Math.min((now - start) / 1400, 1);
+    b.textContent = fmt.format(Math.round(n * (1 - Math.pow(1 - p, 4))));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+if (dlEls.length) {
+  downloadCount().then((n) => {
+    if (n < DL_MIN) return;
+    if (!("IntersectionObserver" in window)) return dlEls.forEach((el) => countUp(el, n));
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      countUp(e.target.querySelector(".dl-count"), n);
+    }));
+    dlEls.forEach((el) => io.observe(el.closest(".download-action")));
+  }).catch(() => {});
+}

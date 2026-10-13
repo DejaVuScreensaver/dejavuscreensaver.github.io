@@ -52,6 +52,9 @@ kbd { padding: .1em .42em; border: 1px solid #44464d; border-bottom-width: 2px; 
 .actions { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 11px; margin-top: 34px; }
 .download-action { display: grid; gap: 7px; }
 .download-action small { color: #777981; font-size: 11px; text-align: center; }
+.dl-count b { color: #c9cad0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.dl-count:not([hidden]) { animation: dlIn .6s ease both; }
+@keyframes dlIn { from { opacity: 0; } to { opacity: 1; } }
 .button { min-height: 50px; padding: 0 21px; border: 1px solid var(--line); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 18px; text-decoration: none; font-weight: 650; transition: transform .2s ease, background .2s ease; }
 .button:hover { transform: translateY(-1px); }
 .button.primary { background: var(--text); color: #111216; }
@@ -251,8 +254,8 @@ footer a:hover { color: var(--text); }
   .finder-window, .settings-window, .security-panel, .warning-dialog { grid-column: 1 / -1; }
   .finder-content { padding: 25px 20px; }
   .finder-item { min-width: 0; }
-  .final-cta { margin-top: 0; padding: 40px 0; }
-  .final-cta img { width: 56px; height: 56px; }
+  .final-cta { margin-top: 0; padding: 48px 0 40px; grid-template-columns: 1fr; gap: 22px; }
+  .final-cta img { width: 128px; height: 128px; border-radius: 29px; }
   .final-cta .download-action { justify-self: stretch; }
   footer { align-items: flex-start; flex-direction: column; gap: 18px; }
   footer div { gap: 13px 20px; }
