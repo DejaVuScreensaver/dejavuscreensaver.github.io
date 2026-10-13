@@ -256,3 +256,16 @@ if (dlEls.length) {
     dlEls.forEach((el) => io.observe(el.closest(".download-action")));
   }).catch(() => {});
 }
+
+// "View demo": centre the iMac + keyboard in the viewport instead of jumping to the section top.
+document.querySelectorAll('a[href="#demo"]').forEach((link) => link.addEventListener("click", (event) => {
+  const imac = document.querySelector(".imac").getBoundingClientRect();
+  const bottom = Math.max(...[".keyboard-controls p", ".demo-settings-window", ".mobile-notice"]
+    .map((s) => document.querySelector(s)?.getBoundingClientRect()).filter((r) => r && r.height).map((r) => r.bottom));
+  const top = imac.top + imac.width * .0973; // the iMac image has transparent space above the bezel
+  event.preventDefault();
+  window.scrollTo({ top: scrollY + top - Math.max(24, (innerHeight - (bottom - top)) / 2), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+}));
+
+const imacBox = document.querySelector(".imac");
+new ResizeObserver(() => imacBox.style.setProperty("--panel-s", Math.max(.8, imacBox.offsetWidth / 1020))).observe(imacBox);
