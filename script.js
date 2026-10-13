@@ -269,3 +269,42 @@ document.querySelectorAll('a[href="#demo"]').forEach((link) => link.addEventList
 
 const imacBox = document.querySelector(".imac");
 new ResizeObserver(() => imacBox.style.setProperty("--panel-s", Math.max(.8, imacBox.offsetWidth / 1020))).observe(imacBox);
+
+// Hero posts: drop one Apple Community post onto the pile every few seconds while it is on screen.
+const pile = document.querySelector(".post-pile");
+if (pile) {
+  const posts = [...pile.querySelectorAll(".post")];
+  const tilt = [-2.5, 2, -1.5, 2.5, -2, 1.5, -1];
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let top = -1, shown = 0, timer = null, onScreen = false, hovered = false;
+  const fit = () => { pile.style.height = Math.max(...posts.map((p) => p.offsetHeight)) + 40 + "px"; };
+  const place = () => posts.forEach((post, k) => {
+    const age = (top - k + posts.length) % posts.length;
+    const visible = age < Math.min(4, shown);
+    if (age === 0 && !still) {
+      post.style.transition = "none";
+      post.style.transform = `translateY(-80px) scale(1.08) rotate(${tilt[k]}deg)`;
+      post.style.opacity = 0;
+      post.offsetWidth;
+      post.style.transition = "";
+    }
+    post.style.zIndex = 10 - age;
+    post.style.transform = `rotate(${tilt[k]}deg) translate(${(k % 2 ? 1 : -1) * age * 5}px, ${age * 4}px)`;
+    post.style.opacity = visible ? 1 : 0;
+    post.style.visibility = visible ? "visible" : "hidden";
+    post.classList.toggle("is-top", age === 0);
+  });
+  const next = () => { top = (top + 1) % posts.length; shown++; place(); };
+  const sync = () => {
+    const run = onScreen && !hovered;
+    if (run && !timer) timer = shown ? setInterval(next, still ? 6000 : 4000) : setTimeout(() => { timer = null; next(); sync(); }, still ? 0 : 1600);
+    if (!run && timer) { clearInterval(timer); clearTimeout(timer); timer = null; }
+  };
+  fit(); addEventListener("resize", fit); document.fonts?.ready.then(fit);
+  posts.forEach((p) => { p.style.opacity = 0; p.style.visibility = "hidden"; });
+  pile.addEventListener("mouseenter", () => { hovered = true; sync(); });
+  pile.addEventListener("mouseleave", () => { hovered = false; sync(); });
+  pile.addEventListener("focusin", () => { hovered = true; sync(); });
+  pile.addEventListener("focusout", () => { hovered = false; sync(); });
+  new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; sync(); }, { threshold: .35 }).observe(pile);
+}

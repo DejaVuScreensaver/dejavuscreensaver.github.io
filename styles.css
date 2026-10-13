@@ -34,19 +34,44 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .nav nav .nav-download:hover { background: #fff; color: #111216; }
 .nav-download svg, .button svg { width: 17px; height: 17px; flex: 0 0 auto; display: block; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 
-.hero { min-height: 650px; padding: 110px 0 120px; display: flex; align-items: center; }
+.hero { min-height: 650px; padding: 110px 0 120px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
 .hero-copy { max-width: 900px; }
 .eyebrow { margin: 0 0 18px; color: #9cb7ff; font-size: 12px; font-weight: 720; letter-spacing: .11em; text-transform: uppercase; }
 .eyebrow a { color: inherit; text-decoration: underline; text-decoration-color: rgba(156,183,255,.4); text-underline-offset: 3px; }
 .eyebrow a:hover { color: #c3d3ff; text-decoration-color: currentColor; }
 h1, h2, h3, p { margin-top: 0; }
-.hero h1 { max-width: 860px; margin-bottom: 28px; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: clamp(48px, 6.5vw, 82px); font-weight: 700; line-height: 1.02; letter-spacing: -.035em; }
+.hero h1 { max-width: 860px; margin-bottom: 28px; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: clamp(44px, 4.6vw, 66px); font-weight: 700; line-height: 1.02; letter-spacing: -.035em; }
 .hero-phrase { display: block; }
 .hero-phrase span { display: inline-block; padding-bottom: .1em; margin-bottom: -.1em; -webkit-background-clip: text; background-clip: text; color: transparent; animation: wordIn 2.7s cubic-bezier(.2, .7, .2, 1) both; }
 .hero-phrase span:nth-child(1) { background-image: linear-gradient(90deg, #ffb36b, #ffa073); animation-delay: .75s; }
 .hero-phrase span:nth-child(2) { background-image: linear-gradient(90deg, #ffa073, #ff8d7e); animation-delay: 1.35s; }
 .hero-phrase span:nth-child(3) { background-image: linear-gradient(90deg, #ff8d7e, #ff7a8a); animation-delay: 1.95s; }
 @keyframes wordIn { from { opacity: 0; transform: translateY(.4em); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
+/* Hero, right column: Apple Community posts, styled like the forum, dropped onto a pile one at a time (script.js). */
+main { overflow-x: clip; }
+.hero-posts { min-width: 0; }
+.hero-posts-title { margin: 0 0 4px; color: #d6d6db; font-size: 15px; font-weight: 600; text-align: center; }
+.hero-posts-sub { margin: 0 0 6px; color: var(--muted); font-size: 13px; text-align: center; }
+.post-pile { position: relative; min-height: 460px; }
+.post { position: absolute; top: 24px; left: 0; right: 0; max-width: 540px; margin: 0 auto; padding: 1.6em 1.75em 1.5em; display: block; border-radius: 14px; background: #fff; color: #1d1d1f; font: 400 15px/1.47 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; letter-spacing: -.022em; text-decoration: none; box-shadow: 0 22px 48px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.3); opacity: 0; transition: transform .8s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
+.post:first-child { opacity: 1; }
+.post-author { display: flex; align-items: center; gap: .75em; }
+.post-avatar { flex: none; width: 2.65em; height: 2.65em; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(#a6a6ab, #858589); color: #fff; font: 600 1.15em/1 ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; letter-spacing: 0; }
+.post-author b { color: #333; font-weight: 600; }
+.post-muted { color: #6e6e73; }
+.post-author small, .post-sig, .post-time { display: block; color: #6e6e73; font-size: .706em; letter-spacing: -.01em; line-height: 1.33; }
+.post-title { display: block; margin: .5em 0 .35em; font: 600 1.88em/1.125 -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif; letter-spacing: .004em; }
+.post-body { display: block; margin-bottom: 1em; }
+.post-sig { margin-bottom: .3em; font-style: italic; }
+.post mark { padding: 0 .1em; background: linear-gradient(rgba(255, 214, 10, .55), rgba(255, 214, 10, .55)) no-repeat 0 0 / 0 100%; color: inherit; }
+.post.is-top mark { background-size: 100% 100%; transition: background-size .9s ease .7s; }
+.post-actions { display: flex; align-items: center; gap: .7em; margin-top: 1.4em; }
+.post-metoo, .post-reply { padding: .47em .94em; border: 1px solid #0066cc; border-radius: 980px; color: #0066cc; line-height: 1.18; white-space: nowrap; }
+.post-metoo svg { width: 1.1em; height: 1.1em; margin-right: .15em; vertical-align: -.15em; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.post-reply { border-color: transparent; background: #0071e3; color: #fff; opacity: .42; }
+.post-source { margin-left: auto; color: #0066cc; font-size: .87em; white-space: nowrap; }
+.post:hover .post-source, .post:focus-visible .post-source { text-decoration: underline; }
+.post:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
 .lede { max-width: 730px; color: var(--muted); font-size: 21px; line-height: 1.55; }
 kbd { padding: .1em .42em; border: 1px solid #44464d; border-bottom-width: 2px; border-radius: 6px; background: #24262c; color: #efeff1; font: inherit; font-size: .78em; }
 .actions { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 11px; margin-top: 34px; }
@@ -214,6 +239,8 @@ footer a:hover { color: var(--text); }
 }
 
 @media (max-width: 920px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hero h1 { font-size: clamp(48px, 8vw, 70px); }
   .hero { min-height: 0; padding: 90px 0; }
   .imac { --imac-w: 86%; }
   .demo-settings-overlay { top: 78%; right: -2%; width: 46%; transform: none; }
@@ -226,6 +253,8 @@ footer a:hover { color: var(--text); }
 }
 
 @media (max-width: 620px) {
+  .post { font-size: 12.5px; }
+  .post-pile { min-height: 380px; }
   .shell { width: min(calc(100% - 28px), var(--max)); }
   .nav { height: 92px; }
   .brand span { display: none; }
