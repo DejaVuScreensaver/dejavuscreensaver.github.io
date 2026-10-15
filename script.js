@@ -278,16 +278,24 @@ if (pile) {
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let top = -1, shown = 0, timer = null, onScreen = false, hovered = false;
   const fit = () => { pile.style.height = Math.max(...posts.map((p) => p.offsetHeight)) + 40 + "px"; };
-  const place = () => posts.forEach((post, k) => {
+  const place = (dir = 1) => posts.forEach((post, k) => {
     const age = (top - k + posts.length) % posts.length;
     const visible = age < Math.min(4, shown);
-    if (age === 0 && !still) {
+    if (dir < 0 && age === posts.length - 1 && !still) { // going back: lift the old top card off the pile
+      post.style.transform = `translateY(-80px) scale(1.08) rotate(${tilt[k]}deg)`;
+      post.style.opacity = 0;
+      post.style.pointerEvents = "none";
+      setTimeout(() => { if (post.style.opacity === "0") post.style.visibility = "hidden"; }, 600);
+      return;
+    }
+    if (dir > 0 && age === 0 && !still) {
       post.style.transition = "none";
       post.style.transform = `translateY(-80px) scale(1.08) rotate(${tilt[k]}deg)`;
       post.style.opacity = 0;
       post.offsetWidth;
       post.style.transition = "";
     }
+    post.style.pointerEvents = "";
     post.style.zIndex = 10 - age;
     post.style.transform = `rotate(${tilt[k]}deg) translate(${(k % 2 ? 1 : -1) * age * 5}px, ${age * 4}px)`;
     post.style.opacity = visible ? 1 : 0;
@@ -295,6 +303,7 @@ if (pile) {
     post.classList.toggle("is-top", age === 0);
   });
   const next = () => { top = (top + 1) % posts.length; shown++; place(); };
+  const prev = () => { top = (top - 1 + posts.length) % posts.length; place(-1); };
   const sync = () => {
     const run = onScreen && !hovered;
     if (run && !timer) timer = shown ? setInterval(next, still ? 6000 : 4000) : setTimeout(() => { timer = null; next(); sync(); }, still ? 0 : 1600);
@@ -307,4 +316,8 @@ if (pile) {
   pile.addEventListener("focusin", () => { hovered = true; sync(); });
   pile.addEventListener("focusout", () => { hovered = false; sync(); });
   new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; sync(); }, { threshold: .35 }).observe(pile);
+  document.querySelectorAll("[data-pile]").forEach((btn) => btn.addEventListener("click", () => {
+    if (btn.dataset.pile > 0 || shown < 2) next(); else prev();
+    clearInterval(timer); clearTimeout(timer); timer = null; sync(); // restart the auto-advance countdown
+  }));
 }
