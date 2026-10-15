@@ -199,6 +199,7 @@ async function playSettingsIntro() {
   menuApp.classList.remove("is-active", "is-open");
   await wait(250);
   settingsReveal.classList.add("is-open");
+  settingsReveal.querySelector("video").play().catch(() => {});
 }
 
 if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
