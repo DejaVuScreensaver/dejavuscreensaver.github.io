@@ -306,7 +306,7 @@ if (pile) {
   const prev = () => { top = (top - 1 + posts.length) % posts.length; place(-1); };
   const sync = () => {
     const run = onScreen && !hovered;
-    if (run && !timer) timer = shown ? setInterval(next, still ? 6000 : 4000) : setTimeout(() => { timer = null; next(); sync(); }, still ? 0 : 1600);
+    if (run && !timer) timer = shown ? setInterval(next, still ? 6000 : 4000) : setTimeout(() => { timer = null; next(); sync(); }, 0);
     if (!run && timer) { clearInterval(timer); clearTimeout(timer); timer = null; }
   };
   fit(); addEventListener("resize", fit); document.fonts?.ready.then(fit);
