@@ -222,7 +222,7 @@ async function downloadCount() {
     const cached = JSON.parse(sessionStorage.getItem(DL_KEY) || "null");
     if (cached && Date.now() - cached.t < 10 * 60 * 1000) return cached.n;
   } catch {}
-  const res = await fetch("https://api.github.com/repos/pietromichelini/DejaVuScreensaver/releases?per_page=100");
+  const res = await fetch("https://api.github.com/repos/DejaVuScreensaver/DejaVuScreensaver/releases?per_page=100");
   if (!res.ok) throw new Error(res.status);
   const n = (await res.json()).flatMap((r) => r.assets).filter((a) => a.name.endsWith(".dmg")).reduce((sum, a) => sum + a.download_count, 0);
   try { sessionStorage.setItem(DL_KEY, JSON.stringify({ n, t: Date.now() })); } catch {}
