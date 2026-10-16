@@ -212,22 +212,26 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
   observer.observe(settingsReveal.querySelector(".mac-menubar"));
 }
 
-// Live download count: sum of DMG downloads across all GitHub releases.
-// Hidden when zero; fails silently (offline, rate limit).
+// Live release version and download count from GitHub.
+// The count is hidden when zero; both keep their HTML fallback on failure.
 const DL_MIN = 1;
-const DL_KEY = "dl-count-v1";
+const DL_KEY = "release-info-v1";
 const dlEls = [...document.querySelectorAll(".dl-count")];
 
-async function downloadCount() {
+async function releaseInfo() {
   try {
     const cached = JSON.parse(sessionStorage.getItem(DL_KEY) || "null");
-    if (cached && Date.now() - cached.t < 10 * 60 * 1000) return cached.n;
+    if (cached && Date.now() - cached.t < 10 * 60 * 1000) return cached;
   } catch {}
   const res = await fetch("https://api.github.com/repos/DejaVuScreensaver/DejaVuScreensaver/releases?per_page=100");
   if (!res.ok) throw new Error(res.status);
-  const n = (await res.json()).flatMap((r) => r.assets).filter((a) => a.name.endsWith(".dmg")).reduce((sum, a) => sum + a.download_count, 0);
-  try { sessionStorage.setItem(DL_KEY, JSON.stringify({ n, t: Date.now() })); } catch {}
-  return n;
+  const releases = await res.json();
+  const latest = releases[0];
+  const version = latest.name?.match(/\d+\.\d+\.\d+(?: \(\d+\))?/)?.[0] || latest.tag_name.replace(/^v/, "");
+  const downloads = releases.flatMap((r) => r.assets).filter((a) => a.name.endsWith(".dmg")).reduce((sum, a) => sum + a.download_count, 0);
+  const info = { version, downloads, t: Date.now() };
+  try { sessionStorage.setItem(DL_KEY, JSON.stringify(info)); } catch {}
+  return info;
 }
 
 function countUp(el, n) {
@@ -246,13 +250,14 @@ function countUp(el, n) {
 }
 
 if (dlEls.length) {
-  downloadCount().then((n) => {
-    if (n < DL_MIN) return;
-    if (!("IntersectionObserver" in window)) return dlEls.forEach((el) => countUp(el, n));
+  releaseInfo().then(({ version, downloads }) => {
+    document.querySelectorAll(".release-version").forEach((el) => { el.textContent = `v${version}`; });
+    if (downloads < DL_MIN) return;
+    if (!("IntersectionObserver" in window)) return dlEls.forEach((el) => countUp(el, downloads));
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       if (!e.isIntersecting) return;
       io.unobserve(e.target);
-      countUp(e.target.querySelector(".dl-count"), n);
+      countUp(e.target.querySelector(".dl-count"), downloads);
     }));
     dlEls.forEach((el) => io.observe(el.closest(".download-action")));
   }).catch(() => {});
