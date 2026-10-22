@@ -215,7 +215,7 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
 // Live release version and download count from GitHub.
 // The count is hidden when zero; both keep their HTML fallback on failure.
 const DL_MIN = 1;
-const DL_KEY = "release-info-v1";
+const DL_KEY = "release-info-v2";
 const dlEls = [...document.querySelectorAll(".dl-count")];
 
 async function releaseInfo() {
