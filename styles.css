@@ -171,7 +171,7 @@ kbd { padding: .1em .42em; border: 1px solid #44464d; border-bottom-width: 2px; 
 .install-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
 .install-steps li { min-height: 230px; padding: 26px; display: grid; grid-template-columns: 40px 1fr; gap: 16px 18px; border-top: 1px solid var(--line); }
 .install-steps li:first-child { border-top: 0; }
-.install-steps li:last-child { padding-bottom: 0; }
+.install-steps li:last-child { min-height: 0; padding-bottom: 0; }
 .step-number { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #272930; font-weight: 700; }
 .step-copy strong { display: block; margin: 5px 0 8px; font-size: 19px; }
 .step-copy p { margin-bottom: 0; color: var(--muted); line-height: 1.5; }
