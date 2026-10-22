@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#08090c">
   <title>DejaVuScreensaver — Turn your Mac’s screen into a living photo album</title>
   <link rel="icon" href="assets/app-icon.png">
-  <link rel="stylesheet" href="styles.css?v=20261023">
+  <link rel="stylesheet" href="styles.css?v=20261023a">
 </head>
 <body>
   <header class="nav shell">
@@ -225,20 +225,10 @@
             <strong>Open it and allow Photos access</strong>
             <p>Open DejaVuScreensaver, click Grant Access, and approve the macOS Photos prompt. Then choose your albums and start the slideshow.</p>
           </div>
-          <div class="photos-access-flow" aria-hidden="true">
-            <div class="photos-access-window">
-              <div class="window-bar"><div class="traffic-lights"><span></span><span></span><span></span></div><b>DejaVuScreensaver</b></div>
-              <div class="photos-access-content">
-                <span class="photos-source-label">Source</span>
-                <div class="photos-access-row">
-                  <span class="photos-access-required"><svg viewBox="0 0 24 24"><path d="m12 3 10 18H2Z"/><path d="M12 9v5m0 3v.1"/></svg>Photos access required</span>
-                  <span class="grant-access-button">Grant Access</span>
-                </div>
-              </div>
-            </div>
-            <div class="photos-approval-hint"><svg viewBox="0 0 24 24"><path d="M12 3v18m-6-6 6 6 6-6"/></svg><span>Allow access in the macOS prompt</span></div>
-            <div class="photos-access-granted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Full Photos access granted</div>
-          </div>
+          <figure class="photos-permission-reference">
+            <figcaption>Photos</figcaption>
+            <img src="assets/photos-before-access.png" width="1280" height="210" alt="Source section before permission is granted: Photos access required, with the Grant Access button on the right.">
+          </figure>
         </li>
       </ol>
     </section>
