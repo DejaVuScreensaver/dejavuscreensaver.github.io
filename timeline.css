@@ -32,7 +32,7 @@
 .release-content code { color: #e0e1e7; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .87em; overflow-wrap: anywhere; }
 .release-link { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; color: #d5d6dd; font-size: 12px; text-decoration: none; }
 .release-link:hover { color: #ffc18f; }
-.is-latest::before { border-color: #ffb36b; background: #ffb36b; box-shadow: 0 0 0 5px rgba(255,179,107,.08); }
+.is-latest::before { border-color: #ffb36b; background: #ffb36b; box-shadow: 0 0 0 5px rgba(255,179,107,.08); animation: latest-dot-breathe 3s ease-in-out infinite; }
 .is-latest .release-version-label { color: #ffb36b; }
 .latest-badge { margin-top: 6px; padding: 5px 7px; border: 1px solid rgba(255,179,107,.24); border-radius: 5px; color: #ffc18f; font-size: 9px; letter-spacing: .015em; }
 .timeline-entry:last-child .release-content { border-bottom: 0; }
@@ -51,4 +51,12 @@
   .release-content h2 { font-size: 23px; }
   .release-content { padding-bottom: 28px; }
   .release-content ul { font-size: 14px; }
+}
+
+@keyframes latest-dot-breathe {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(255,179,107,.06), 0 0 6px rgba(255,179,107,.12); }
+  50% { box-shadow: 0 0 0 8px rgba(255,179,107,.14), 0 0 20px rgba(255,179,107,.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-latest::before { animation: none; }
 }
