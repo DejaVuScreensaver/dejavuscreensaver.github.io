@@ -8,7 +8,6 @@
 .timeline-intro .eyebrow { color: #ffb36b; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; }
 .timeline-intro h1 { margin-bottom: 24px; font-size: clamp(42px, 6vw, 72px); font-weight: 700; line-height: 1.04; letter-spacing: -.045em; }
 .timeline-intro h1 span { background: linear-gradient(100deg, #ffb36b, #ff7a8a); background-clip: text; -webkit-background-clip: text; color: transparent; }
-.timeline-lede { margin-bottom: 30px; color: var(--muted); font-size: 19px; line-height: 1.6; }
 .timeline-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
 .timeline-summary > span { color: var(--muted); }
 .timeline-summary > span > span { margin-inline: 7px; color: #60616a; }
@@ -38,17 +37,12 @@
 .is-latest .release-content { border-bottom-color: rgba(255,179,107,.35); }
 .is-latest .release-category { color: #ffb36b; }
 .timeline-note { max-width: 680px; margin: -22px 0 44px 219px; color: #85868f; font-size: 12px; line-height: 1.7; }
-.timeline-end { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; padding: 30px 0 52px; border-bottom: 1px solid var(--line); font-size: 15px; }
-.timeline-end > span { color: var(--muted); }
-.timeline-end a { color: var(--text); text-decoration: none; }
-.timeline-end a:hover { color: #ffc18f; }
+.timeline-page footer { border-top: 1px solid var(--line); }
 @media (max-width: 680px) {
   .timeline-intro { padding: 30px 0 48px; }
   .back-link { margin-bottom: 42px; }
   .timeline-intro h1 { font-size: clamp(40px, 10vw, 58px); }
   .timeline-intro h1 span { display: block; }
-  .timeline-lede { font-size: 17px; }
-  .timeline-lede br { display: none; }
   .timeline-entry { grid-template-columns: minmax(0, 1fr); row-gap: 22px; padding-left: 29px; padding-bottom: 40px; }
   .release-meta { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; }
   .release-version-label { font-size: 22px; }
@@ -58,5 +52,4 @@
   .release-content { padding-bottom: 28px; }
   .release-content ul { font-size: 14px; }
   .timeline-note { margin: -12px 0 32px 29px; }
-  .timeline-end { padding-top: 22px; }
 }

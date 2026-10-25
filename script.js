@@ -9,6 +9,31 @@ const detailsPanel = document.querySelector("#detail-options");
 const detailsControl = document.querySelector('[data-action="details"]');
 const pauseControl = document.querySelector('[data-action="pause"]');
 
+const osInfo = document.querySelector(".os-info");
+const osTooltip = document.querySelector("#os-compatibility");
+const osRequirement = osInfo.closest(".os-requirement");
+function showCompatibilityInfo(show) {
+  osTooltip.hidden = !show;
+  osInfo.setAttribute("aria-expanded", String(show));
+}
+osInfo.addEventListener("pointerenter", (event) => {
+  if (event.pointerType === "mouse") showCompatibilityInfo(true);
+});
+osRequirement.addEventListener("pointerleave", (event) => {
+  if (event.pointerType === "mouse" && !osInfo.matches(":focus-visible")) showCompatibilityInfo(false);
+});
+osInfo.addEventListener("focus", () => {
+  if (osInfo.matches(":focus-visible")) showCompatibilityInfo(true);
+});
+osInfo.addEventListener("blur", () => showCompatibilityInfo(false));
+osInfo.addEventListener("click", () => showCompatibilityInfo(osTooltip.hidden));
+document.addEventListener("pointerdown", (event) => {
+  if (!osRequirement.contains(event.target)) showCompatibilityInfo(false);
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") showCompatibilityInfo(false);
+});
+
 const memories = [
   { date: "August 16, 2025 at 8:41 PM", location: "Lake Como, Italy", filename: "IMG_1842.HEIC" },
   { date: "July 3, 2024 at 7:26 PM", location: "Adriatic Coast, Italy", filename: "IMG_0917.HEIC" },
