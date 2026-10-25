@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="The DejaVuScreensaver development timeline: public releases, native macOS features, security improvements, and integrated updates.">
+  <meta name="theme-color" content="#08090c">
+  <title>Development timeline — DejaVuScreensaver</title>
+  <link rel="canonical" href="https://dejavuscreensaver.github.io/development-timeline.html">
+  <link rel="icon" href="assets/app-icon.png">
+  <link rel="stylesheet" href="styles.css?v=20261023c">
+  <link rel="stylesheet" href="timeline.css?v=20261025">
+</head>
+<body class="timeline-page">
+  <a class="skip-link" href="#timeline">Skip to releases</a>
+  <header class="nav shell">
+    <a class="brand" href="index.html" aria-label="DejaVuScreensaver home">
+      <img src="assets/app-icon.png" alt="" width="38" height="38">
+      <span>DejaVuScreensaver</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a class="nav-download" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/latest/download/DejaVuScreensaver.dmg" target="_blank" rel="noopener noreferrer">
+        <span>Download</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <main class="timeline-shell shell">
+    <header class="timeline-intro">
+      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to home</a>
+      <p class="eyebrow">Public release log</p>
+      <h1>Development <span>timeline</span></h1>
+      <p class="timeline-lede">From the first public preview to integrated updates.<br> Every release, and the engineering behind it.</p>
+      <div class="timeline-summary">
+        <span>6 releases <span aria-hidden="true">/</span> macOS 14+</span>
+        <a href="#v0-7-3">Latest: <strong>v0.7.3</strong> <span aria-hidden="true">↓</span></a>
+      </div>
+    </header>
+
+    <ol class="release-timeline" id="timeline" aria-label="Public releases, oldest to newest">
+      <li class="timeline-entry" id="v0-4-0">
+        <div class="release-meta">
+          <span class="release-version-label">0.4.0</span>
+          <time datetime="2026-10-13">Oct 13, 2026</time>
+          <span class="release-build">Build 24</span>
+        </div>
+        <article class="release-content" aria-labelledby="release-040-title">
+          <p class="release-category">Foundation</p>
+          <h2 id="release-040-title">Initial public preview</h2>
+          <ul>
+            <li>Native macOS slideshow with direct <code>PhotoKit</code> integration.</li>
+            <li>Album selection, favorites and capture-date filters.</li>
+            <li>Static and Ken Burns presentation modes.</li>
+            <li>Keyboard navigation, pause/resume, and photo metadata overlays.</li>
+            <li>DMG distribution for Apple Silicon, requiring macOS 14 or later.</li>
+          </ul>
+          <a class="release-link" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/tag/v0.4.0" target="_blank" rel="noopener noreferrer" aria-label="View the 0.4.0 release on GitHub">View release <span aria-hidden="true">↗</span></a>
+        </article>
+      </li>
+
+      <li class="timeline-entry" id="v0-5-0">
+        <div class="release-meta">
+          <span class="release-version-label">0.5.0</span>
+          <time datetime="2026-10-15">Oct 15, 2026</time>
+          <span class="release-build">Build 25</span>
+        </div>
+        <article class="release-content" aria-labelledby="release-050-title">
+          <p class="release-category">Interface &amp; playback</p>
+          <h2 id="release-050-title">Settings &amp; playback</h2>
+          <ul>
+            <li>Redesigned <code>SwiftUI</code> settings with a macOS-style sidebar.</li>
+            <li>Unified album selection and filters with a live photo count.</li>
+            <li>Capture-date filtering between two dates.</li>
+            <li>Added Fade transitions and continuous Ken Burns motion.</li>
+            <li>Simplified exit behavior and automatic playback suspension while the display is asleep.</li>
+          </ul>
+          <a class="release-link" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/tag/v0.5.0" target="_blank" rel="noopener noreferrer" aria-label="View the 0.5.0 release on GitHub">View release <span aria-hidden="true">↗</span></a>
+        </article>
+      </li>
+
+      <li class="timeline-entry" id="v0-6-0">
+        <div class="release-meta">
+          <span class="release-version-label">0.6.0</span>
+          <time datetime="2026-10-19">Oct 19, 2026</time>
+          <span class="release-build">Build 26</span>
+        </div>
+        <article class="release-content" aria-labelledby="release-060-title">
+          <p class="release-category">Offline geodata</p>
+          <h2 id="release-060-title">Location &amp; offline geodata</h2>
+          <ul>
+            <li>Added a minimap with animated zoom for geotagged photos.</li>
+            <li>Offline place-name resolution: nearby city, region, or country.</li>
+            <li>Location-only filtering and chronological playback order.</li>
+            <li>Custom calendar navigation and configurable 12/24-hour clock formats.</li>
+            <li>Simplified filter composition: all enabled conditions must match.</li>
+          </ul>
+          <a class="release-link" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/tag/v0.6.0" target="_blank" rel="noopener noreferrer" aria-label="View the 0.6.0 release on GitHub">View release <span aria-hidden="true">↗</span></a>
+        </article>
+      </li>
+
+      <li class="timeline-entry" id="v0-7-1">
+        <div class="release-meta">
+          <span class="release-version-label">0.7.1</span>
+          <time datetime="2026-10-22">Oct 22, 2026</time>
+          <span class="release-build">Build 28</span>
+        </div>
+        <article class="release-content" aria-labelledby="release-071-title">
+          <p class="release-category">Geographic filters &amp; distribution</p>
+          <h2 id="release-071-title">Geographic filters &amp; signed distribution</h2>
+          <ul>
+            <li>Country and radius-based geographic filtering.</li>
+            <li>Interactive map picker with place search and coordinate entry.</li>
+            <li>Radius visualization with metric and imperial units.</li>
+            <li><code>Developer ID</code> signing, Hardened Runtime, and Apple notarization.</li>
+            <li>Fixed Photos authorization in Developer ID builds.</li>
+          </ul>
+          <a class="release-link" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/tag/v0.7.1" target="_blank" rel="noopener noreferrer" aria-label="View the 0.7.1 release on GitHub">View release <span aria-hidden="true">↗</span></a>
+        </article>
+      </li>
+
+      <li class="timeline-entry" id="v0-7-2">
+        <div class="release-meta">
+          <span class="release-version-label">0.7.2</span>
+          <time datetime="2026-10-23">Oct 23, 2026</time>
+          <span class="release-build">Build 29</span>
+        </div>
+        <article class="release-content" aria-labelledby="release-072-title">
+          <p class="release-category">Compatibility &amp; security</p>
+          <h2 id="release-072-title">Universal binary &amp; security hardening</h2>
+          <ul>
+            <li>Universal macOS binary supporting <code>arm64</code> and <code>x86_64</code>.</li>
+            <li>Independent lock-state verification before dismissing slideshow covers.</li>
+            <li>Immediate removal of photos and metadata during lock handoff.</li>
+            <li>Cancellation of pending image requests and playback controls while the security cover is active.</li>
+            <li>Improved multi-display coverage during lock transitions.</li>
+            <li>Fixed legacy viewing-history migration and deletion.</li>
+          </ul>
+          <a class="release-link" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/tag/v0.7.2" target="_blank" rel="noopener noreferrer" aria-label="View the 0.7.2 release on GitHub">View release <span aria-hidden="true">↗</span></a>
+        </article>
+      </li>
+
+      <li class="timeline-entry is-latest" id="v0-7-3">
+        <div class="release-meta">
+          <span class="release-version-label">0.7.3</span>
+          <time datetime="2026-10-25">Oct 25, 2026</time>
+          <span class="release-build">Build 31</span>
+          <span class="latest-badge">Latest release</span>
+        </div>
+        <article class="release-content" aria-labelledby="release-073-title">
+          <p class="release-category">Update delivery</p>
+          <h2 id="release-073-title">Integrated updates</h2>
+          <ul>
+            <li>Integrated <code>Sparkle 2.10.1</code> for in-app update delivery.</li>
+            <li>HTTPS appcast feed and <code>Ed25519</code>-signed update archives.</li>
+            <li>Scheduled background checks with a sidebar availability badge.</li>
+            <li>User-confirmed download, installation, and relaunch.</li>
+            <li>Automatic installation and system profiling disabled.</li>
+            <li>Fixed-width Settings sidebar enforced with a native Auto Layout constraint.</li>
+          </ul>
+          <a class="release-link" href="https://github.com/DejaVuScreensaver/DejaVuScreensaver/releases/tag/v0.7.3" target="_blank" rel="noopener noreferrer" aria-label="View the 0.7.3 release on GitHub">View release <span aria-hidden="true">↗</span></a>
+        </article>
+      </li>
+    </ol>
+    <p class="timeline-note">Public releases only. Dates shown in Europe/Rome. Geographic features tagged 0.7.0 shipped in the public 0.7.1 release.</p>
+    <div class="timeline-end">
+      <span>Built in the open.</span>
+      <a href="https://github.com/DejaVuScreensaver/DejaVuScreensaver" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span></a>
+    </div>
+  </main>
+
+  <footer class="shell">
+    <span>Made in 🇮🇹 with ❤️ by <a href="https://www.linkedin.com/in/pietro-michelini-dev/" target="_blank" rel="noopener noreferrer">Pietro</a></span>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="https://github.com/DejaVuScreensaver/DejaVuScreensaver" target="_blank" rel="noopener noreferrer">View source ↗</a>
+      <a href="https://ko-fi.com/feedpippopizza">Enjoying it? Please feed me 🍕</a>
+    </div>
+  </footer>
+</body>
+</html>
